@@ -646,7 +646,7 @@ void Cthread::command_handle_apns(unsigned char *cmd,int sock_recv)
 		{
 			try{
 				if (small_class == 0x00) {//handle alarm event
-                    Chuawei_client::send_cmd_to_server_huawei(0,cmd);
+//                    Chuawei_client::send_cmd_to_server_huawei(0,cmd);
 					int place_bracket_left = Cstatic_var::p_static_func->find_place((char*)&cmd[0],'[',len_standard);
 					//printf("05 00,place_bracket_left=%d\n",place_bracket_left);
 					int place_bracket_right = Cstatic_var::p_static_func->find_place((char*)&cmd[0],']',len_standard);
@@ -693,61 +693,44 @@ void Cthread::command_handle_apns(unsigned char *cmd,int sock_recv)
 					{
 						printf("command_handle_apns,account_number_machine is error，05 00 ,return,,array_cid=%s,account_number_machine=%s\n",array_cid,account_number_machine);
 						return;
-					}else{
-						string str_machine_account = account_number_machine;
-						string str_alarm_event_cid = array_cid;
+					}else {
+                        string str_machine_account = account_number_machine;
+                        string str_alarm_event_cid = array_cid;
 
-                        int num = str_alarm_event_cid.find("756");
-//                        printf("command_handle_apns,array_cid=%s,account_number_machine=%s,num=%d\n",array_cid,account_number_machine,num);
-                        if (num > 0) {
+                        int status_machine_05_00_cid = -1;
+                        status_machine_05_00_cid = Cstatic_var::p_static_person->query_status_from_machine_05_00_cid_map(
+                                account_number_machine, str_alarm_event_cid);
+
+
+                        if (status_machine_05_00_cid == 3) {
+                            Chuawei_client::send_cmd_to_server_huawei(0, cmd);
+                            Cstatic_var::p_static_person->insert_event_cid_05_00_map(account_number_machine,
+                                                                                     str_alarm_event_cid);
+
+                            int num = str_alarm_event_cid.find("756");
+                            if (num > 0) {
 //                            printf("found 756,command_handle_apns,array_cid=%s,account_number_machine=%s\n",array_cid,account_number_machine);
-                            return;
+                                return;
+                            }
+
+                            Cstatic_var::p_static_person->insert_alarm_event_cid_map(str_machine_account,
+                                                                                     str_alarm_event_cid,
+                                                                                     str_date_time_real);
+                            Cstatic_var::p_static_person->pop_pront_alarm_event_cid_map(str_machine_account);
+
+                            //////////////////////////////////////////////////////////
+                            int status_machine_push = Cstatic_var::query_machine_push_status(account_number_machine);
+                            if (status_machine_push == 1) {
+                                Cstatic_var::apns_push_message(account_number_machine, array_cid);
+                            }
+                        } else if (status_machine_05_00_cid == 1) {
+
+                            Cstatic_var::p_static_person->delete_from_map_event_cid_05_00(account_number_machine,
+                                                                                          str_alarm_event_cid);
+                            if ((0 == strcmp(account_number_machine, "865740032019478"))) {
+                                Cstatic_var::p_static_person->traversing_event_cid_05_00_map();
+                            }
                         }
-
-						Cstatic_var::p_static_person->insert_alarm_event_cid_map(str_machine_account,str_alarm_event_cid,str_date_time_real);
-						Cstatic_var::p_static_person->pop_pront_alarm_event_cid_map(str_machine_account);
-					
-						//////////////////////////////////////////////////////////
-						int status_machine_push = Cstatic_var::query_machine_push_status(account_number_machine);
-						if((0 == strcmp(account_number_machine,"863977035369995"))
-						   || (0 == strcmp(account_number_machine,"863977035485684"))
-						   || (0 == strcmp(account_number_machine,"865740032019478")))
-						{
-							//printf("command_handle_apns,05 00 ,status_machine_push=%d,account_number_machine=%s,sock_recv=%d\n",status_machine_push,account_number_machine,sock_recv);
-						}
-						if (status_machine_push == 1) {
-							int status_machine_05_00_cid = -1;
-							status_machine_05_00_cid = Cstatic_var::p_static_person->query_status_from_machine_05_00_cid_map(account_number_machine,str_alarm_event_cid);
-							if((0 == strcmp(account_number_machine,"865740032019478")))
-							{
-								//printf("command_handle_apns,05 00 ,status_machine_05_00_cid=%d,account_number_machine=%s,sock_recv=%d\n",status_machine_05_00_cid,account_number_machine,sock_recv);
-							}
-							
-							if (status_machine_05_00_cid == 3){
-								if((0 == strcmp(account_number_machine,"865740032019478")))
-								{
-                                    Cstatic_var::p_static_person->traversing_event_cid_05_00_map();
-								}
-
-                                Cstatic_var::p_static_person->insert_event_cid_05_00_map(account_number_machine, str_alarm_event_cid);
-								if((0 == strcmp(account_number_machine,"865740032019478")))
-								{
-                                    Cstatic_var::p_static_person->traversing_event_cid_05_00_map();
-								}
-                                Cstatic_var::apns_push_message(account_number_machine,array_cid);
-//                                Chuawei_client::send_cmd_to_server_huawei(0,cmd);
-
-							}else if (status_machine_05_00_cid == 1){
-								
-								Cstatic_var::p_static_person->delete_from_map_event_cid_05_00(account_number_machine, str_alarm_event_cid);
-								if((0 == strcmp(account_number_machine,"865740032019478")))
-								{
-									Cstatic_var::p_static_person->traversing_event_cid_05_00_map();
-								}
-							}
-						}
-						
-						
 					}
 				}
 			}
