@@ -230,7 +230,7 @@ const int  DETECT_INTERVAL_CENTER = 15;
 
 
 const int MAX_LEN_STD = 115;
-const int MAX_LEN_PRI = 400;
+const int MAX_LEN_PRI = 1460;
 //const unsigned int BUF_SIZE = 1024*1024;
 
 

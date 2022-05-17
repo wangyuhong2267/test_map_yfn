@@ -705,6 +705,8 @@ void Cthread::command_handle_apns(unsigned char *cmd,int sock_recv)
                         if (status_machine_05_00_cid == 3) {
                             Chuawei_client::send_cmd_to_server_huawei(0, cmd);
                             Cstatic_var::p_static_person->insert_event_cid_05_00_map(account_number_machine,
+
+
                                                                                      str_alarm_event_cid);
 
                             int num = str_alarm_event_cid.find("756");
