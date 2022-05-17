@@ -306,13 +306,14 @@ void* Chuawei_client::ThreadHandle_huawei_conn(void *args)
     {
 //        printf("ThreadHandle_huawei_conn,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
         int i;
-        for(i=0;i<MAX_USER_NUMBER_APNS;i++)
+//        for(i=0;i<MAX_USER_NUMBER_APNS;i++)
+        for(i=0;i<1;i++)
         {
             if ((Chuawei_client::huaweiServerInfo[i].huawei_bHave_server) && (!Chuawei_client::huaweiServerInfo[i].huawei_bUsed)) {
                 Chuawei_client::huawei_server_info_init2(i);
                 int ret_conn = p_tcp_sock->tcp_connect_timeout (&(Chuawei_client::huaweiServerInfo[i].huawei_sockfd_server), 3 ,Chuawei_client::huaweiServerInfo[i].huawei_str_ip_address,9501);
-                printf("ThreadHandle_ninghai,i=%d,ret_conn=%d\n",i,ret_conn);
-                printf("ThreadHandle_ninghai,Chuawei_client::huaweiServerInfo[%d].huawei_str_ip_address=%s\n",i,Chuawei_client::huaweiServerInfo[i].huawei_str_ip_address);
+                printf("ThreadHandle_huawei_conn,i=%d,ret_conn=%d\n",i,ret_conn);
+                printf("ThreadHandle_huawei_conn,Chuawei_client::huaweiServerInfo[%d].huawei_str_ip_address=%s\n",i,Chuawei_client::huaweiServerInfo[i].huawei_str_ip_address);
                 if (ret_conn > 0) {
                     Chuawei_client::huaweiServerInfo[i].huawei_bUsed = true;
 
@@ -331,7 +332,8 @@ void* Chuawei_client::ThreadHandle_huawei_conn(void *args)
         if (Cstatic_var::time_calculate_three_second >= 9) {
 
             for (int i = 0; i < MAX_USER_NUMBER_HUAWEI; i++) {
-                if(Chuawei_client::huaweiServerInfo[i].huawei_bUsed){
+//                if(Chuawei_client::huaweiServerInfo[i].huawei_bUsed){
+                if((Chuawei_client::huaweiServerInfo[i].huawei_bHave_server) && (!Chuawei_client::huaweiServerInfo[i].huawei_bUsed)){
 //                    printf("ThreadHandle_huawei_conn,bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n");
                     send_heart_beat_to_server(i);
 
