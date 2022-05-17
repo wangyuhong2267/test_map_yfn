@@ -327,6 +327,8 @@ void* Chuawei_client::ThreadHandle_huawei_conn(void *args)
 
 
 
+
+
 //        if (Cstatic_var::time_calculate_three_second >= 123) {
 //        if (Cstatic_var::time_calculate_three_second >= 61) {
         if (Cstatic_var::time_calculate_three_second >= 9) {
