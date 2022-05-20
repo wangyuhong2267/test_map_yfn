@@ -331,6 +331,7 @@ void* Chuawei_client::ThreadHandle_huawei_conn(void *args)
 
 
 
+
 //        if (Cstatic_var::time_calculate_three_second >= 123) {
 //        if (Cstatic_var::time_calculate_three_second >= 61) {
         if (Cstatic_var::time_calculate_three_second >= 9) {
@@ -563,7 +564,7 @@ void Chuawei_client::command_handle_huawei(unsigned char *cmd,int sock_recv)
             if (small_class == 04) {//
                 try{
 
-                    printf("history_record,big_class=%02x, small_class=%02x\n",big_class, small_class);
+//                    printf("history_record,big_class=%02x, small_class=%02x\n",big_class, small_class);
                     if(Cstatic_var::ServerInfo[0].bUsed){
                         Cstatic_var::send_cmd_to_server(0,cmd);
                     }

@@ -592,7 +592,7 @@ static int on_data_chunk_recv_callback(nghttp2_session *session,
 	char buf[1024] = {0};
 	memcpy(buf,data,len);
 	buf[len]=0;
-	printf("on_data_chunk_recv_callback,%s\n",buf);
+//	printf("on_data_chunk_recv_callback,%s\n",buf);
 	return 0;
 }
 

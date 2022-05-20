@@ -150,8 +150,8 @@ void Cstatic_var::send_cmd_to_server(unsigned int index,unsigned char *cmd)
 	
 	
 	int ret2 = send(Cstatic_var::ServerInfo[index].sockfd_server,(char *)cmd,len_total,0);
-	printf("send_cmd_to_server,big_class=%02x, small_class=%02x,send to phone,ret2=%d\n",
-		   big_class, small_class,ret2);
+//	printf("send_cmd_to_server,big_class=%02x, small_class=%02x,send to phone,ret2=%d\n",
+//		   big_class, small_class,ret2);
 	
 }
 
@@ -402,6 +402,61 @@ void Cstatic_var::apns_push(char *device_token,char *payload,int num)
 	
 }
 
+void Cstatic_var::apns_push_yfn(char *device_token,char *payload,int num)
+//void Cstatic_var::apns_push()
+{
+	//printf("%s\n",__FUNCTION__);
+	char * array1 = alloc_string("{\"aps\":{\"alert\":");
+	//char * array2 = alloc_string("\"wangyuhong...\"");
+	//char * array3 = alloc_string(",\"badge\":\"...\",\"sound\":\"default\",\"content-available\":1}}");
+//	int num = 99;
+//	char str4[6];
+//	memset(str4,0,sizeof(str4));
+//	string str_num = std::to_string(num);
+	string str_num = std::to_string(1);
+
+//	char * array3 = alloc_string(",\"badtege\":");
+	char * array3 = alloc_string(",\"badge\":");
+//	char * array5 = alloc_string(",\"sound\":\"default\",\"content-available\":0}}");
+//    char * array3 = alloc_string(",\"badge\":");
+//	char * array5 = alloc_string(",\"sound\":\"default\",\"content-available\":0}}");
+    char * array5;
+    if(num == -1){
+        array5 = alloc_string(",\"sound\":\"default\",\"content-available\":0}}");
+    }else if(num == 1){
+        array5 = alloc_string(",\"sound\":\"sound_fire.wav\",\"content-available\":0}}");
+    }else if(num == 2){
+        array5 = alloc_string(",\"sound\":\"sound_gas.wav\",\"content-available\":0}}");
+    }else if(num == 3){
+        array5 = alloc_string(",\"sound\":\"sound_water.wav\",\"content-available\":0}}");
+    }else if(num == 99){
+        array5 = alloc_string(",\"sound\":\"default\",\"content-available\":0}}");
+    }else{
+        array5 = alloc_string(",\"sound\":\"default\",\"content-available\":0}}");
+    }
+//    char * array5 = alloc_string(",\"sound\":\"sos2.wav\",\"content-available\":0}}");
+
+	//char * array2 = "\"wangyuhong...\"";
+	opt.token = alloc_string(device_token);
+	check_and_make_opt(&opt);
+	//init_global_library();
+	//	opt.payload  = alloc_string("{\"aps\":{\"alert\":\"wangyuhong...\",\"sound\":\"default\"}}");
+	char str[1024];
+	memset(str,0,sizeof(str));
+	strcat(str,array1);
+	//strcat(str,array2);
+	strcat(str,"\"");
+	strcat(str,payload);
+	strcat(str,"\"");
+	strcat(str,array3);
+	/////////////////////////
+	strcat(str,str_num.c_str());
+	strcat(str,array5);
+	opt.payload  = alloc_string(str);
+	blocking_post(&loop, &conn, &opt);
+
+}
+
 void Cstatic_var::apns_connect()
 {
 	printf("%s\n",__FUNCTION__);
@@ -519,13 +574,18 @@ void Cstatic_var::apns_push_message(string str_machine_account,char * chstr_cid)
 
             int type_event = 0;
             type_event = Cstatic_var::p_static_person->get_event_type(str_cid,str_language);
-            printf("apns_push_message,type_event=%d\n",type_event);
-            printf("apns_push_message,str_cid=%s\n",str_cid.c_str());
-            printf("apns_push_message,str_language=%s\n",str_language.c_str());
+            if (str_machine_account == "866569060902449") {
+                printf("apns_push_message,type_event=%d\n",type_event);
+                printf("apns_push_message,str_cid=%s\n",str_cid.c_str());
+                printf("apns_push_message,str_language=%s\n",str_language.c_str());
 
-			Cstatic_var::p_static_person->cid_to_chinese_or_english_cid(str_cid,str_cid_chinese_or_english,str_language);
+            }
+
+
+//			Cstatic_var::p_static_person->cid_to_chinese_or_english_cid(str_cid,str_cid_chinese_or_english,str_language);
+			Cstatic_var::p_static_person->cid_to_chinese_or_english_cid_yfn(str_cid,str_cid_chinese_or_english,str_language);
 			//printf("apns_push_message,str_language=%s\n",str_language.c_str());
-			//printf("apns_push_message,str_cid_chinese_or_english=%s\n",str_cid_chinese_or_english.c_str());
+			printf("apns_push_message,str_cid_chinese_or_english=%s\n",str_cid_chinese_or_english.c_str());
 			int num = 0;
 			if (1)
 			{
@@ -543,13 +603,17 @@ void Cstatic_var::apns_push_message(string str_machine_account,char * chstr_cid)
 			
 			if (1)
 			{
+
+
+
 				lock_guard<mutex> guard(std::mutex mutex_map_phone);
 				Cstatic_var::p_static_person->delete_from_map_phone(str_device_tocken);
 				
 				Cstatic_var::p_static_person->insert_phone_map(str_device_tocken,str_phone_account,str_machine_account,std::to_string(num));
 				
-				Cstatic_var::apns_push(alloc_string(it22->phone_device_tocken.c_str()),(char *)str_cid_chinese_or_english.c_str(),type_event);
-				
+//				Cstatic_var::apns_push(alloc_string(it22->phone_device_tocken.c_str()),(char *)str_cid_chinese_or_english.c_str(),type_event);
+				Cstatic_var::apns_push_yfn(alloc_string(it22->phone_device_tocken.c_str()),(char *)str_cid_chinese_or_english.c_str(),type_event);
+
 //				if (num >= 1) {
 //					Cstatic_var::apns_push(alloc_string(it22->phone_device_tocken.c_str()),(char *)str_cid_chinese_or_english.c_str(),1);
 //				}

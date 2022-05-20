@@ -391,7 +391,7 @@ void person::delete_from_map_event_cid_05_00(string str_machine_account,string s
 		//printf("delete_from_map_event_cid_05_00,size_list=%d\n",size_list);
 		//plist_temp22->push_back(list_phone_info);
 		for (list<Cmachine_05_00_cid_info>::iterator it = plist_temp22->begin(); it!=plist_temp22->end(); it++) {
-			cout<<it->event_cid_05_00<<"\n";
+//			cout<<it->event_cid_05_00<<"\n";
 			string str_temp = it->event_cid_05_00;
 			if (str_temp == str_event_cid_05_00) {
 				it = plist_temp22->erase(it);
@@ -424,7 +424,7 @@ void person::delete_from_map_machine(string str_machine_account,string str_devic
 		printf("delete_from_map_machine,size_list=%d\n",size_list);
 		//plist_temp22->push_back(list_phone_info);
 		for (list<Cphone_info>::iterator it = plist_temp22->begin(); it!=plist_temp22->end(); it++) {
-			cout<<it->phone_device_tocken<<"\n";
+//			cout<<it->phone_device_tocken<<"\n";
 			string str_temp = it->phone_device_tocken;
 			if (str_temp == str_device_tocken) {
 				it = plist_temp22->erase(it);
@@ -515,7 +515,7 @@ string person::get_mahcine_account_from_map_phone(string str_device_tocken)
 		
 		int size_list = Cstatic_var::map_phone.size();
 		printf("get_mahcine_account_from_map_phone,size_list=%d\n",size_list);
-		cout<<it2->first<<endl;
+//		cout<<it2->first<<endl;
 		shared_ptr<Cmachine_info> plist_temp22 = it2->second;
 		//cout<<(plist_temp22->phone_account)<<"  "<<(plist_temp22->machine_account)<<"\n";
 		printf("delete_from_map_phone,phone_account=%s,machine_account=%s,badge_identification=%s\n",
@@ -1146,13 +1146,13 @@ int person::get_event_type(string str_cid,string str_language){
         if (str_cid_event =="1110") {
             return 1;
         }else if (str_cid_event =="1131") {//Perimeter
-            return 1;
+            return 4;
         }else if (str_cid_event =="1120") {//Emergency
-            return 1;
+            return 4;
         }else if (str_cid_event =="1130") {//Burglar
-            return 1;
+            return 5;
         }else if (str_cid_event =="1121") {//Help
-            return 1;
+            return 5;
         }else if (str_cid_event =="1151") {//Gas
             return 2;
         }else if (str_cid_event =="1113") {//Water
@@ -1328,6 +1328,157 @@ void  person::cid_to_chinese_or_english_cid(string  str_cid,string &str_cid_chin
 	//string str_temp =
 	str_cid_chinese_or_english = str_cid_event_temp + "," + str_cid_defence_area_number2 + "  " + str_cid;
 	
+}
+
+void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_chinese_or_english,string str_language)
+{
+	string str_cid_event_temp = "";
+	string str_cid_event = str_cid.substr(8,4);
+	printf("cid_to_chinese_or_english_cid,str_cid_event=%s\n",str_cid_event.c_str());
+	string str_cid_defence_area_number = str_cid.substr(16,3);
+	printf("cid_to_chinese_or_english_cid,str_cid_defence_area_number=%s\n",str_cid_defence_area_number.c_str());
+	int i_cid_defence_area_number = std::atoi(str_cid_defence_area_number.c_str());
+	string str_cid_defence_area_number2 = std::to_string(i_cid_defence_area_number);
+	printf("cid_to_chinese_or_english_cid,str_cid_defence_area_number2=%s\n",str_cid_defence_area_number2.c_str());
+	//printf("cid_to_chinese_or_english_cid,str_language=%s\n",str_language.c_str());
+
+
+
+
+
+    string str_value_returnString = "";
+	if (str_language == "China") {
+		if (str_cid_event =="1110") {
+			str_cid_event_temp = "火警";
+		}else if (str_cid_event =="1131") {
+			str_cid_event_temp = "周界报警";
+		}else if (str_cid_event =="1120") {
+			str_cid_event_temp = "紧急报警";
+		}else if (str_cid_event =="1130") {
+			str_cid_event_temp = "盗警";
+		}else if (str_cid_event =="1121") {
+			str_cid_event_temp = "胁迫";
+		}else if (str_cid_event =="1151") {
+			str_cid_event_temp = "煤气";
+		}else if (str_cid_event =="1113") {
+			str_cid_event_temp = "水警";
+		}else if (str_cid_event =="1380") {
+			str_cid_event_temp = "探头异常";
+		}else if (str_cid_event =="1384") {
+			str_cid_event_temp = "电源故障低电";
+		}else if (str_cid_event =="1383") {
+			str_cid_event_temp = "防拆";
+		}else if (str_cid_event =="1110") {
+			str_cid_event_temp = "医疗";
+		}else if (str_cid_event =="1400") {
+			str_cid_event_temp = "撤防";
+		}else if (str_cid_event =="3400") {
+			str_cid_event_temp = "全局布防";
+		}else if (str_cid_event =="1456") {
+			str_cid_event_temp = "半布防";
+		}else if (str_cid_event =="1301") {
+			str_cid_event_temp = "市电掉电";
+		}else if (str_cid_event =="1302") {
+			str_cid_event_temp = "备用电池低电";
+		}else if (str_cid_event =="3301") {
+			str_cid_event_temp = "市电掉电恢复";
+		}else if (str_cid_event =="3302") {
+			str_cid_event_temp = "备用电池低电恢复";
+		}
+		if (str_cid_defence_area_number2 == "0") {
+			str_cid_defence_area_number2 = "主机";
+		}else{
+			str_cid_defence_area_number2 = str_cid_defence_area_number2 + "号防区";
+		}
+	}else{
+		if (str_cid_event =="1110") {
+			str_cid_event_temp = "Fire" + string(" Zone No.:") + str_cid_defence_area_number;
+		}else if (str_cid_event =="1131") {
+			str_cid_event_temp = "Perimeter" + string(" Zone No.:") + str_cid_defence_area_number;
+		}else if (str_cid_event =="1120") {
+			str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number;
+		}else if (str_cid_event =="1130") {
+			str_cid_event_temp = "Burglar" + string(" Zone No.:") + str_cid_defence_area_number;
+		}else if (str_cid_event =="1121") {
+
+            int i_controller_source = i_cid_defence_area_number;
+            if((i_controller_source >= 1) && (i_controller_source <= 97)){
+                str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number;
+            }else if(i_controller_source == 98){
+//            str_value_returnString = static_var.str_center_transfer;
+            }else if(i_controller_source == 99){
+//            str_value_returnString = static_var.str_center_standard;
+            }else if((i_controller_source >= 100) && (i_controller_source <= 199)){
+                str_cid_event_temp = "Help" + string(" By User:APP:") + str_cid_defence_area_number.substr(1,2);
+            }else if((i_controller_source >= 200) && (i_controller_source <= 255)){
+//            str_value_returnString = static_var.str_wechat + ":" + str_controller_source;
+            }else{
+                str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number;
+            }
+		}else if (str_cid_event =="1151") {
+			str_cid_event_temp = "Gas" + string(" Zone No.:") + str_cid_defence_area_number;
+		}else if (str_cid_event =="1113") {
+			str_cid_event_temp = "Water" + string(" Zone No.:") + str_cid_defence_area_number;
+		}else if (str_cid_event =="1380") {
+			str_cid_event_temp = "Abnormal Detector";
+		}else if (str_cid_event =="1384") {
+			str_cid_event_temp = "Low Battery";
+		}else if (str_cid_event =="1383") {
+			str_cid_event_temp = "Tamper";
+		}else if (str_cid_event =="1110") {
+			str_cid_event_temp = "Medical";
+		}else if (str_cid_event =="1400") {
+			str_cid_event_temp = "Disarm";
+		}else if (str_cid_event =="3400") {
+//			str_cid_event_temp = "All Arm";
+			str_cid_event_temp = "Arm";
+		}else if (str_cid_event =="1456") {
+			str_cid_event_temp = "Part Arm";
+		}else if (str_cid_event =="1301") {
+			str_cid_event_temp = "Electric City Low Battery";
+		}else if (str_cid_event =="1302") {
+			str_cid_event_temp = "Spare battery Low Battery";
+		}else if (str_cid_event =="3301") {
+			str_cid_event_temp = "Electric City Low Battery Restore";
+		}else if (str_cid_event =="3302") {
+			str_cid_event_temp = "Spare battery Low Battery Restore";
+		}
+		if (str_cid_defence_area_number2 == "0") {
+			str_cid_defence_area_number2 = "Alarm Panel";
+		}else{
+			str_cid_defence_area_number2 = "Zone No." + str_cid_defence_area_number2;
+		}
+	}
+
+    printf("cid_to_chinese_or_english_cid,str_cid_event_temp=%s\n",str_cid_event_temp.c_str());
+
+    if ((str_cid_event =="1400") || (str_cid_event =="3400") || (str_cid_event =="1456")){
+        int i_controller_source = i_cid_defence_area_number;
+        printf("cid_to_chinese_or_english_cid,i_controller_source=%d\n",i_controller_source);
+        if((i_controller_source >= 1) && (i_controller_source <= 97)){
+            str_value_returnString = " By User:Remote Control" + string(":") + str_cid_defence_area_number;
+        }else if(i_controller_source == 98){
+//            str_value_returnString = static_var.str_center_transfer;
+        }else if(i_controller_source == 99){
+//            str_value_returnString = static_var.str_center_standard;
+        }else if((i_controller_source >= 100) && (i_controller_source <= 199)){
+            str_value_returnString =" By User:APP:" + str_cid_defence_area_number.substr(1,2);
+//			str_value_returnString = "APP:" + static_var.str_last_two_numbers + str_controller_source.substring(1, 3);
+//			str_value_returnString = "APP:" + static_var.str_last_two_numbers + static_var.phone_acct_static_username;
+//			str_value_returnString = "APP";
+        }else if((i_controller_source >= 200) && (i_controller_source <= 255)){
+//            str_value_returnString = static_var.str_wechat + ":" + str_controller_source;
+        }
+    }else{
+        str_value_returnString = "";
+    }
+
+    printf("cid_to_chinese_or_english_cid,str_value_returnString=%s\n",str_value_returnString.c_str());
+
+	//string str_temp =
+//	str_cid_chinese_or_english = str_cid_event_temp + "," + str_cid_defence_area_number2 + "  " + str_cid;
+	str_cid_chinese_or_english = str_cid_event_temp + str_value_returnString;
+
 }
 void person::traversing_phone_map_language()
 {

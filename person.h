@@ -73,6 +73,7 @@ public:
 	int get_event_type(string str_cid,string str_language);
 	int query_status_from_machine_map_0e_02(string str_machine_account,string str_device_tocken,string str_phone_account);
 	void cid_to_chinese_or_english_cid(string  str_cid,string &str_cid_chinese,string str_language);
-	
+	void cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_chinese,string str_language);
+
 };
 #endif /* person_hpp */
