@@ -1147,9 +1147,9 @@ int person::get_event_type(string str_cid,string str_language){
             return 1;
         }else if (str_cid_event =="1131") {//Perimeter
             return 4;
-        }else if (str_cid_event =="1120") {//Emergency
+        }else if (str_cid_event =="1130") {//Emergency
             return 4;
-        }else if (str_cid_event =="1130") {//Burglar
+        }else if (str_cid_event =="1120") {//Burglar
             return 5;
         }else if (str_cid_event =="1121") {//Help
             return 5;
@@ -1185,13 +1185,13 @@ int person::get_event_type(string str_cid,string str_language){
         if (str_cid_event =="1110") {
             return 1;
         }else if (str_cid_event =="1131") {
-            return 1;
-        }else if (str_cid_event =="1120") {
-            return 1;
+            return 4;
         }else if (str_cid_event =="1130") {
-            return 1;
+            return 4;
+        }else if (str_cid_event =="1120") {
+            return 5;
         }else if (str_cid_event =="1121") {
-            return 1;
+            return 5;
         }else if (str_cid_event =="1151") {//Gas
             return 2;
         }else if (str_cid_event =="1113") {//Water
@@ -1396,7 +1396,21 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
 		}else if (str_cid_event =="1131") {
 			str_cid_event_temp = "Perimeter" + string(" Zone No.:") + str_cid_defence_area_number;
 		}else if (str_cid_event =="1120") {
-			str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number;
+            int i_controller_source = i_cid_defence_area_number;
+            if((i_controller_source >= 1) && (i_controller_source <= 97)){
+                str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number;
+            }else if(i_controller_source == 98){
+//            str_value_returnString = static_var.str_center_transfer;
+            }else if(i_controller_source == 99){
+//            str_value_returnString = static_var.str_center_standard;
+            }else if((i_controller_source >= 100) && (i_controller_source <= 199)){
+                str_cid_event_temp = "Emergency" + string(" By User:APP:") + str_cid_defence_area_number.substr(1,2);
+            }else if((i_controller_source >= 200) && (i_controller_source <= 255)){
+//            str_value_returnString = static_var.str_wechat + ":" + str_controller_source;
+            }else{
+                str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number;
+            }
+//			str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number;
 		}else if (str_cid_event =="1130") {
 			str_cid_event_temp = "Burglar" + string(" Zone No.:") + str_cid_defence_area_number;
 		}else if (str_cid_event =="1121") {

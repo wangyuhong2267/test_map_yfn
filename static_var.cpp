@@ -429,6 +429,10 @@ void Cstatic_var::apns_push_yfn(char *device_token,char *payload,int num)
         array5 = alloc_string(",\"sound\":\"sound_gas.wav\",\"content-available\":0}}");
     }else if(num == 3){
         array5 = alloc_string(",\"sound\":\"sound_water.wav\",\"content-available\":0}}");
+    }else if(num == 4){
+        array5 = alloc_string(",\"sound\":\"hb_52.wav\",\"content-available\":0}}");
+    }else if(num == 5){
+        array5 = alloc_string(",\"sound\":\"sos.wav\",\"content-available\":0}}");
     }else if(num == 99){
         array5 = alloc_string(",\"sound\":\"default\",\"content-available\":0}}");
     }else{
