@@ -85,7 +85,7 @@ public:
 	
 	//////////////////////////////////////////////////////////////
 	static void apns_push(char *device_token,char *payload,int num);
-	static void apns_push_yfn(char *device_token,char *payload,int num);
+	static void apns_push_yfn(char *device_token,char *payload,int event_type,int num);
 	//static void apns_push();
 	static void apns_connect();
 	static void nghttp2_ping_init_time();

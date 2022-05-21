@@ -402,7 +402,7 @@ void Cstatic_var::apns_push(char *device_token,char *payload,int num)
 	
 }
 
-void Cstatic_var::apns_push_yfn(char *device_token,char *payload,int num)
+void Cstatic_var::apns_push_yfn(char *device_token,char *payload,int event_type,int num)
 //void Cstatic_var::apns_push()
 {
 	//printf("%s\n",__FUNCTION__);
@@ -413,7 +413,7 @@ void Cstatic_var::apns_push_yfn(char *device_token,char *payload,int num)
 //	char str4[6];
 //	memset(str4,0,sizeof(str4));
 //	string str_num = std::to_string(num);
-	string str_num = std::to_string(1);
+	string str_num = std::to_string(num);
 
 //	char * array3 = alloc_string(",\"badtege\":");
 	char * array3 = alloc_string(",\"badge\":");
@@ -453,9 +453,11 @@ void Cstatic_var::apns_push_yfn(char *device_token,char *payload,int num)
 	strcat(str,payload);
 	strcat(str,"\"");
 	strcat(str,array3);
+    strcat(str,str_num.c_str());
 	/////////////////////////
-	strcat(str,str_num.c_str());
+
 	strcat(str,array5);
+	printf("apns_push_yfn,str=%s\n",str);
 	opt.payload  = alloc_string(str);
 	blocking_post(&loop, &conn, &opt);
 
@@ -616,7 +618,7 @@ void Cstatic_var::apns_push_message(string str_machine_account,char * chstr_cid)
 				Cstatic_var::p_static_person->insert_phone_map(str_device_tocken,str_phone_account,str_machine_account,std::to_string(num));
 				
 //				Cstatic_var::apns_push(alloc_string(it22->phone_device_tocken.c_str()),(char *)str_cid_chinese_or_english.c_str(),type_event);
-				Cstatic_var::apns_push_yfn(alloc_string(it22->phone_device_tocken.c_str()),(char *)str_cid_chinese_or_english.c_str(),type_event);
+				Cstatic_var::apns_push_yfn(alloc_string(it22->phone_device_tocken.c_str()),(char *)str_cid_chinese_or_english.c_str(),type_event,num);
 
 //				if (num >= 1) {
 //					Cstatic_var::apns_push(alloc_string(it22->phone_device_tocken.c_str()),(char *)str_cid_chinese_or_english.c_str(),1);
