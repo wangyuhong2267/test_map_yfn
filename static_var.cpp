@@ -421,19 +421,19 @@ void Cstatic_var::apns_push_yfn(char *device_token,char *payload,int event_type,
 //    char * array3 = alloc_string(",\"badge\":");
 //	char * array5 = alloc_string(",\"sound\":\"default\",\"content-available\":0}}");
     char * array5;
-    if(num == -1){
+    if(event_type == -1){
         array5 = alloc_string(",\"sound\":\"default\",\"content-available\":0}}");
-    }else if(num == 1){
+    }else if(event_type == 1){
         array5 = alloc_string(",\"sound\":\"sound_fire.wav\",\"content-available\":0}}");
-    }else if(num == 2){
+    }else if(event_type == 2){
         array5 = alloc_string(",\"sound\":\"sound_gas.wav\",\"content-available\":0}}");
-    }else if(num == 3){
+    }else if(event_type == 3){
         array5 = alloc_string(",\"sound\":\"sound_water.wav\",\"content-available\":0}}");
-    }else if(num == 4){
+    }else if(event_type == 4){
         array5 = alloc_string(",\"sound\":\"hb_52.wav\",\"content-available\":0}}");
-    }else if(num == 5){
+    }else if(event_type == 5){
         array5 = alloc_string(",\"sound\":\"sos.wav\",\"content-available\":0}}");
-    }else if(num == 99){
+    }else if(event_type == 99){
         array5 = alloc_string(",\"sound\":\"default\",\"content-available\":0}}");
     }else{
         array5 = alloc_string(",\"sound\":\"default\",\"content-available\":0}}");

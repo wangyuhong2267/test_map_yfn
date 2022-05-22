@@ -825,7 +825,7 @@ void person::send_history_alarm_event_cid_map_0f_04(string str_machine_account,u
 				str_cid = str_cid + it22->alarm_cid + it22->date_time_cid;
 			}
 		}
-		
+        printf("send_history_alarm_event_cid_map_0f_04,str_cid=%s\n",(char*)str_cid.c_str());
 		Cstatic_var::send_clear_badges_to_app_0f_04(conn_number,sock_recv,count_list,(char*)str_cid.c_str());
 		
 		

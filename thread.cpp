@@ -680,7 +680,7 @@ void Cthread::command_handle_apns(unsigned char *cmd,int sock_recv)
 					memset(array_cid,0,sizeof(array_cid));
 					memcpy(array_cid,(char*)&cmd[place_bracket_left + 1],
 						   (place_bracket_right - place_bracket_left - 1));
-					if((0 == strcmp(account_number_machine,"863977035369995"))
+					if((0 == strcmp(account_number_machine,"866569060902449"))
 					   || (0 == strcmp(account_number_machine,"863977035485684"))
 					   || (0 == strcmp(account_number_machine,"865740032019478")))
 					{
