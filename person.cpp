@@ -1468,6 +1468,7 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
 
     printf("cid_to_chinese_or_english_cid,str_cid_event_temp=%s\n",str_cid_event_temp.c_str());
 
+
     if ((str_cid_event =="1400") || (str_cid_event =="3400") || (str_cid_event =="1456")){
         int i_controller_source = i_cid_defence_area_number;
         printf("cid_to_chinese_or_english_cid,i_controller_source=%d\n",i_controller_source);
