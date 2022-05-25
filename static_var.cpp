@@ -402,6 +402,7 @@ void Cstatic_var::apns_push(char *device_token,char *payload,int num)
 	
 }
 
+
 void Cstatic_var::apns_push_yfn(char *device_token,char *payload,int event_type,int num)
 //void Cstatic_var::apns_push()
 {
