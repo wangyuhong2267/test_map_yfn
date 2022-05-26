@@ -1393,13 +1393,16 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
 		}
 	}else{
 		if (str_cid_event =="1110") {
-			str_cid_event_temp = "Fire" + string(" Zone No.:") + str_cid_defence_area_number_two;
+//			str_cid_event_temp = "Fire" + string(" Zone No.:") + str_cid_defence_area_number_two;
+			str_cid_event_temp = "Fire" + string(" Zone No.:") + str_cid_defence_area_number2;
 		}else if (str_cid_event =="1131") {
-			str_cid_event_temp = "Perimeter" + string(" Zone No.:") + str_cid_defence_area_number_two;
+//			str_cid_event_temp = "Perimeter" + string(" Zone No.:") + str_cid_defence_area_number_two;
+			str_cid_event_temp = "Perimeter" + string(" Zone No.:") + str_cid_defence_area_number2;
 		}else if (str_cid_event =="1120") {
             int i_controller_source = i_cid_defence_area_number;
             if((i_controller_source >= 1) && (i_controller_source <= 97)){
-                str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number_two;
+//                str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number_two;
+                str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number2;
             }else if(i_controller_source == 98){
 //            str_value_returnString = static_var.str_center_transfer;
             }else if(i_controller_source == 99){
@@ -1409,16 +1412,19 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
             }else if((i_controller_source >= 200) && (i_controller_source <= 255)){
 //            str_value_returnString = static_var.str_wechat + ":" + str_controller_source;
             }else{
+//                str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number2;
                 str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number_two;
             }
 //			str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number;
 		}else if (str_cid_event =="1130") {
-			str_cid_event_temp = "Burglar" + string(" Zone No.:") + str_cid_defence_area_number_two;
+//			str_cid_event_temp = "Burglar" + string(" Zone No.:") + str_cid_defence_area_number_two;
+			str_cid_event_temp = "Burglar" + string(" Zone No.:") + str_cid_defence_area_number2;
 		}else if (str_cid_event =="1121") {
 
             int i_controller_source = i_cid_defence_area_number;
             if((i_controller_source >= 1) && (i_controller_source <= 97)){
-                str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number_two;
+//                str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number_two;
+                str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number2;
             }else if(i_controller_source == 98){
 //            str_value_returnString = static_var.str_center_transfer;
             }else if(i_controller_source == 99){
@@ -1428,12 +1434,15 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
             }else if((i_controller_source >= 200) && (i_controller_source <= 255)){
 //            str_value_returnString = static_var.str_wechat + ":" + str_controller_source;
             }else{
-                str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number_two;
+//                str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number_two;
+                str_cid_event_temp = "Help" + string(" Zone No.:") + str_cid_defence_area_number2;
             }
 		}else if (str_cid_event =="1151") {
-			str_cid_event_temp = "Gas" + string(" Zone No.:") + str_cid_defence_area_number_two;
+//			str_cid_event_temp = "Gas" + string(" Zone No.:") + str_cid_defence_area_number_two;
+			str_cid_event_temp = "Gas" + string(" Zone No.:") + str_cid_defence_area_number2;
 		}else if (str_cid_event =="1113") {
-			str_cid_event_temp = "Water" + string(" Zone No.:") + str_cid_defence_area_number_two;
+//			str_cid_event_temp = "Water" + string(" Zone No.:") + str_cid_defence_area_number_two;
+			str_cid_event_temp = "Water" + string(" Zone No.:") + str_cid_defence_area_number2;
 		}else if (str_cid_event =="1380") {
 			str_cid_event_temp = "Abnormal Detector";
 		}else if (str_cid_event =="1384") {
@@ -1462,7 +1471,8 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
 			str_cid_defence_area_number2 = "Alarm Panel";
 		}else{
 //			str_cid_defence_area_number2 = "Zone No." + str_cid_defence_area_number2;
-			str_cid_defence_area_number2 = "Zone No." + str_cid_defence_area_number_two;
+//			str_cid_defence_area_number2 = "Zone No." + str_cid_defence_area_number_two;
+			str_cid_defence_area_number2 = "Zone No." + str_cid_defence_area_number2;
 		}
 	}
 
