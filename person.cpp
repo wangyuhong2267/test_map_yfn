@@ -1336,6 +1336,7 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
 	string str_cid_event = str_cid.substr(8,4);
 	printf("cid_to_chinese_or_english_cid,str_cid_event=%s\n",str_cid_event.c_str());
 	string str_cid_defence_area_number = str_cid.substr(16,3);
+	string str_cid_defence_area_number_remote = str_cid.substr(18,1);
 	string str_cid_defence_area_number_two = str_cid.substr(17,2);
 	printf("cid_to_chinese_or_english_cid,str_cid_defence_area_number=%s\n",str_cid_defence_area_number.c_str());
 	int i_cid_defence_area_number = std::atoi(str_cid_defence_area_number.c_str());
@@ -1402,7 +1403,7 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
             int i_controller_source = i_cid_defence_area_number;
             if((i_controller_source >= 1) && (i_controller_source <= 97)){
 //                str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number_two;
-                str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number2;
+                str_cid_event_temp = "Emergency    By User:Remote Control" + string(":") + str_cid_defence_area_number_remote;
             }else if(i_controller_source == 98){
 //            str_value_returnString = static_var.str_center_transfer;
             }else if(i_controller_source == 99){
@@ -1484,7 +1485,7 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
         int i_controller_source = i_cid_defence_area_number;
         printf("cid_to_chinese_or_english_cid,i_controller_source=%d\n",i_controller_source);
         if((i_controller_source >= 1) && (i_controller_source <= 97)){
-            str_value_returnString = "    By User:Remote Control" + string(":") + str_cid_defence_area_number;
+            str_value_returnString = "    By User:Remote Control" + string(":") + str_cid_defence_area_number_remote;
         }else if(i_controller_source == 98){
 //            str_value_returnString = static_var.str_center_transfer;
         }else if(i_controller_source == 99){
