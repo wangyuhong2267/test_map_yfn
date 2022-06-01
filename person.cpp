@@ -1403,13 +1403,13 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
             int i_controller_source = i_cid_defence_area_number;
             if((i_controller_source >= 1) && (i_controller_source <= 97)){
 //                str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number_two;
-                str_cid_event_temp = "Emergency    By User:Remote Control" + string(":") + str_cid_defence_area_number_remote;
+                str_cid_event_temp = "Help    By User:Remote Control" + string(":") + str_cid_defence_area_number_remote;
             }else if(i_controller_source == 98){
 //            str_value_returnString = static_var.str_center_transfer;
             }else if(i_controller_source == 99){
 //            str_value_returnString = static_var.str_center_standard;
             }else if((i_controller_source >= 100) && (i_controller_source <= 199)){
-                str_cid_event_temp = "Emergency" + string("    By User:") + str_cid_defence_area_number.substr(1,2);
+                str_cid_event_temp = "Help" + string("    By User:") + str_cid_defence_area_number.substr(1,2);
             }else if((i_controller_source >= 200) && (i_controller_source <= 255)){
 //            str_value_returnString = static_var.str_wechat + ":" + str_controller_source;
             }else{
