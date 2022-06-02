@@ -1497,6 +1497,8 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
 //			str_value_returnString = "APP";
         }else if((i_controller_source >= 200) && (i_controller_source <= 255)){
 //            str_value_returnString = static_var.str_wechat + ":" + str_controller_source;
+        }else{
+            str_value_returnString ="    By User:Hub";
         }
     }else{
         str_value_returnString = "";
