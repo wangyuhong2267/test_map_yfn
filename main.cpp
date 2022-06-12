@@ -102,7 +102,8 @@ int main(int argc, const char * argv[]) {
 //	char * str_ip_temp2 = (char*)"192.168.2.108";
 //	char * str_ip_temp2 = (char*)"192.168.2.213";
 //	char * str_ip_temp2 = (char*)"111.231.83.129";
-	char * str_ip_temp2 = (char*)"170.106.153.215";
+//	char * str_ip_temp2 = (char*)"170.106.153.215";
+	char * str_ip_temp2 = (char*)"43.130.3.52";
 	memcpy(Chuawei_client::huaweiServerInfo[0].huawei_str_ip_address,str_ip_temp2,strlen(str_ip_temp2));
 
 
@@ -119,21 +120,21 @@ int main(int argc, const char * argv[]) {
 
 //	p_thread->test_print();
 
-    Cstatic_var::ServerInfo[0].bHave_server = true;
+    /*Cstatic_var::ServerInfo[0].bHave_server = true;
     char * str_ip_temp1 = (char*)"122.152.205.226";
     memcpy(Cstatic_var::ServerInfo[0].str_ip_address,str_ip_temp1,strlen(str_ip_temp1));
 
     Cstatic_var::ServerInfo[1].bHave_server = true;
     char * str_ip_temp = (char*)"47.100.103.247";
-    memcpy(Cstatic_var::ServerInfo[1].str_ip_address,str_ip_temp,strlen(str_ip_temp));
+    memcpy(Cstatic_var::ServerInfo[1].str_ip_address,str_ip_temp,strlen(str_ip_temp));*/
 
-    Cstatic_var::ServerInfo[2].bHave_server = true;
+    Cstatic_var::ServerInfo[0].bHave_server = true;
     char * str_ip_temp22 = (char*)"162.62.61.164";
-    memcpy(Cstatic_var::ServerInfo[2].str_ip_address,str_ip_temp22,strlen(str_ip_temp22));
+    memcpy(Cstatic_var::ServerInfo[0].str_ip_address,str_ip_temp22,strlen(str_ip_temp22));
 
-    Cstatic_var::ServerInfo[3].bHave_server = true;
+    Cstatic_var::ServerInfo[1].bHave_server = true;
     char * str_ip_temp222 = (char*)"49.51.35.75";
-    memcpy(Cstatic_var::ServerInfo[3].str_ip_address,str_ip_temp222,strlen(str_ip_temp222));
+    memcpy(Cstatic_var::ServerInfo[1].str_ip_address,str_ip_temp222,strlen(str_ip_temp222));
 
 	p_thread->create_thread_jiaxing();
 	p_thread->create_thread_ninghai();

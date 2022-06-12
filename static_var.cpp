@@ -150,8 +150,8 @@ void Cstatic_var::send_cmd_to_server(unsigned int index,unsigned char *cmd)
 	
 	
 	int ret2 = send(Cstatic_var::ServerInfo[index].sockfd_server,(char *)cmd,len_total,0);
-//	printf("send_cmd_to_server,big_class=%02x, small_class=%02x,send to phone,ret2=%d\n",
-//		   big_class, small_class,ret2);
+	printf("send_cmd_to_server,big_class=%02x, small_class=%02x,send to phone,ret2=%d\n",
+		   big_class, small_class,ret2);
 	
 }
 
@@ -203,8 +203,10 @@ void Cstatic_var::send_cmd_to_server_0e_03(int sock_recv,unsigned char *cmd)
 	int ret2 = send(Cstatic_var::ServerInfo[0].sockfd_server,(char *)cmd,len_total,0);
 	int ret3 = send(Cstatic_var::ServerInfo[1].sockfd_server,(char *)cmd,len_total,0);
 	//int ret2 = send(sock_recv,(char *)cmd,len_total,0);
-//	printf("send_cmd_towe_chat,big_class=%02x, small_class=%02x,send to phone,ret2=%d\n",
-//		   big_class, small_class,ret2);
+	printf("send_cmd_towe_chat,big_class=%02x, small_class=%02x,send to phone,ret2=%d\n",
+		   big_class, small_class,ret2);
+	printf("send_cmd_towe_chat,big_class=%02x, small_class=%02x,send to phone,ret3=%d\n",
+		   big_class, small_class,ret3);
 	
 }
 

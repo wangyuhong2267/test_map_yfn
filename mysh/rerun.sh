@@ -1,3 +1,4 @@
-cd /home/ubuntu/test_map/test_map
-sudo ./main
+cd /home/ubuntu/server_00_01
+sudo ./main >/home/ubuntu/test.txt
+
 

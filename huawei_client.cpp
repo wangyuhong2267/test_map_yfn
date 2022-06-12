@@ -439,8 +439,8 @@ void Chuawei_client::send_cmd_to_server_huawei(unsigned int index,unsigned char 
 //    Cstatic_var::p_static_func->printf_cmd_client((unsigned char*)cmd,len_total);
 
     int ret2 = send(Chuawei_client::huaweiServerInfo[index].huawei_sockfd_server,(char *)cmd,len_total,0);
-//	printf("send_cmd_towe_chat,big_class=%02x, small_class=%02x,send to phone,ret2=%d\n",
-//		   big_class, small_class,ret2);
+	printf("send_cmd_towe_chat,big_class=%02x, small_class=%02x,send to phone,ret2=%d\n",
+		   big_class, small_class,ret2);
 
 }
 

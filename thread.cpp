@@ -210,7 +210,7 @@ void* Cthread::ThreadHandle_jiaxing(void *args)
 												}
 												
 												
-												//Cstatic_var::p_static_func->printf_cmd_client((unsigned char*)buf,len_total);
+//												Cstatic_var::p_static_func->printf_cmd_client((unsigned char*)buf,len_total);
 												command_handle_apns((unsigned char *)buf,Cstatic_var::ServerInfo[j].sockfd_server);
 												break;
 												
@@ -388,8 +388,8 @@ void Cthread::command_handle_apns(unsigned char *cmd,int sock_recv)
 	
 
 	//printf("command_handle_apns,big_class=%02x, small_class=%02x,conn_number=%d\n",big_class, small_class,conn_number);
-	
-	
+    Cstatic_var::p_static_func->printf_cmd_client((unsigned char*)cmd,len_total);
+
 	
 	switch(big_class)
 	{
@@ -682,7 +682,7 @@ void Cthread::command_handle_apns(unsigned char *cmd,int sock_recv)
 						   (place_bracket_right - place_bracket_left - 1));
 					if((0 == strcmp(account_number_machine,"866569060902449"))
 					   || (0 == strcmp(account_number_machine,"863977035485684"))
-					   || (0 == strcmp(account_number_machine,"865740032019478")))
+					   || (0 == strcmp(account_number_machine,"867542053959493")))
 					{
 						printf("command_handle_apns,05 00 ,array_cid=%s,account_number_machine=%s,sock_recv=%d\n",array_cid,account_number_machine,sock_recv);
 					}
@@ -701,7 +701,7 @@ void Cthread::command_handle_apns(unsigned char *cmd,int sock_recv)
                         status_machine_05_00_cid = Cstatic_var::p_static_person->query_status_from_machine_05_00_cid_map(
                                 account_number_machine, str_alarm_event_cid);
 
-
+                        printf("command_handle_apns,05 00 ,status_machine_05_00_cid=%d\n",status_machine_05_00_cid);
                         if (status_machine_05_00_cid == 3) {
                             Chuawei_client::send_cmd_to_server_huawei(0, cmd);
                             Cstatic_var::p_static_person->insert_event_cid_05_00_map(account_number_machine,
@@ -722,6 +722,7 @@ void Cthread::command_handle_apns(unsigned char *cmd,int sock_recv)
 
                             //////////////////////////////////////////////////////////
                             int status_machine_push = Cstatic_var::query_machine_push_status(account_number_machine);
+                            printf("command_handle_apns,05 00 ,status_machine_push=%d\n",status_machine_push);
                             if (status_machine_push == 1) {
                                 Cstatic_var::apns_push_message(account_number_machine, array_cid);
                             }
