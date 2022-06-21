@@ -1403,7 +1403,7 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
             int i_controller_source = i_cid_defence_area_number;
             if((i_controller_source >= 1) && (i_controller_source <= 97)){
 //                str_cid_event_temp = "Emergency" + string(" Zone No.:") + str_cid_defence_area_number_two;
-                str_cid_event_temp = "Help    By User:Remote Control" + string(":") + str_cid_defence_area_number_remote;
+                str_cid_event_temp = "Help    By User:Key Fob" + string(":") + str_cid_defence_area_number_remote;
             }else if(i_controller_source == 98){
 //            str_value_returnString = static_var.str_center_transfer;
             }else if(i_controller_source == 99){
@@ -1488,7 +1488,7 @@ void  person::cid_to_chinese_or_english_cid_yfn(string  str_cid,string &str_cid_
         int i_controller_source = i_cid_defence_area_number;
         printf("cid_to_chinese_or_english_cid,i_controller_source=%d\n",i_controller_source);
         if((i_controller_source >= 1) && (i_controller_source <= 97)){
-            str_value_returnString = "    By User:Remote Control" + string(":") + str_cid_defence_area_number_remote;
+            str_value_returnString = "    By User:Key Fob" + string(":") + str_cid_defence_area_number_remote;
         }else if(i_controller_source == 98){
 //            str_value_returnString = static_var.str_center_transfer;
         }else if(i_controller_source == 99){
